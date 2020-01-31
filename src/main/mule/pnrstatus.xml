@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd"></mule>
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="cbd7615b-0251-488a-b701-7fe06e056dd5" >
+		<http:listener-connection host="localhost" port="8082" />
+	</http:listener-config>
+	<flow name="pnrstatusFlow" doc:id="ff5fb756-c295-40b0-8bd6-263b38d81399" >
+		<http:listener doc:name="Listener" doc:id="af028b1a-8ca5-4623-a959-fc9b6eafe0d1" config-ref="HTTP_Listener_config" path="/GIT"/>
+		<set-payload value="payloadEE" doc:name="Set Payload" doc:id="f15e13bf-1aed-49e0-a242-33713ad0fc14" />
+	</flow>
+</mule>
